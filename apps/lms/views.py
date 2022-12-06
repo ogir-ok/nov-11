@@ -1,11 +1,17 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.views.generic import ListView, CreateView, UpdateView
+from django.urls import reverse_lazy
+from .models import Student
 
-# Create your views here.
 
+class StudentListView(ListView):
+    model = Student
 
-def hello(request):
-    return HttpResponse('Hello World!')
+class StudentCreateView(CreateView):
+    model = Student
+    success_url = reverse_lazy('lms:student-list')
+    fields = ['name', 'birth_date']
 
-def abc(request):
-    return HttpResponse('abc')
+class StudentUpdateView(UpdateView):
+    model = Student
+    success_url = reverse_lazy('lms:student-list')
+    fields = ['name', 'birth_date']

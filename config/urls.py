@@ -23,7 +23,7 @@ def my_view(request):
 
 
 urlpatterns = [
-    path('', include('apps.lms.urls')),
-    path('lms/', include('apps.lms.urls')),
+    path('', include('apps.lms.urls', namespace="lms")),
     path('admin/', admin.site.urls),
+    path('auth/', include('apps.authentication.urls', namespace='auth'))
 ]

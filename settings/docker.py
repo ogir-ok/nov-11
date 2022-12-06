@@ -11,6 +11,7 @@ DATABASES = {
         'PASSWORD': '123',
         'HOST': 'db',
         'PORT': '5432',
+        'ATOMIC_REQUESTS': True
     }
 }
 
