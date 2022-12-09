@@ -15,3 +15,5 @@ DATABASES = {
     }
 }
 
+
+STATIC_ROOT = '/static'
