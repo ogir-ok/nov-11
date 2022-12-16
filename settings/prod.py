@@ -1,4 +1,4 @@
-from docker import *
+from .docker import *
 
 DEBUG = False
 ALLOWED_HOSTS = ['*', ]
