@@ -20,7 +20,6 @@ class LoginForm(forms.Form):
             raise forms.ValidationError("Unknown user or password")
 
 
-
 class RegistrationForm(forms.ModelForm):
     class Meta:
         model = User
