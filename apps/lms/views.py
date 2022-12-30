@@ -1,7 +1,8 @@
-from django.views.generic import ListView, CreateView, UpdateView
-from django.urls import reverse_lazy
-from .models import Student
 from bootstrap_datepicker_plus.widgets import DatePickerInput
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, ListView, UpdateView
+
+from .models import Student
 
 
 class StudentListView(ListView):
