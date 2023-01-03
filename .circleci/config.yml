@@ -48,14 +48,12 @@ jobs:
 
 # Orchestrate our job run sequence
 workflows:
-  check_code:
+  check_and_deploy:
     jobs:
       - prospector
       - tests
-
-  deploy_dev:
-    jobs:
       - deploy_dev:
+          requires: ['prospector', 'tests']
           filters:
             branches:
               only:
