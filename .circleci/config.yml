@@ -36,7 +36,9 @@ jobs:
       - image: ogirok/nov-11-deploy
     steps:
       - checkout
-      - run: pip install boto3
+      - run: pip install boto3 pexpect
+
+
       - run: python deploy.py
 
 
