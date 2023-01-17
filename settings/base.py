@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'bootstrapform',
     'bootstrap_datepicker_plus',
+    'anymail',
 
     'apps.lms',
     'apps.authentication',
@@ -148,3 +149,9 @@ STATICFILES_DIRS  = [os.path.join(BASE_DIR, 'staticfiles')]
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'admin@nov-11.ogir-ok.com')
+
+SITE_URL='http://localhost:8000'

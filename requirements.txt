@@ -4,3 +4,4 @@ django-bootstrap-form==3.4
 django-bootstrap-datepicker-plus==5.0.2
 uwsgi==2.0.20
 invoke==1.7.1
+django-anymail[mailgun]==9.0
