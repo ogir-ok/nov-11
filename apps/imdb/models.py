@@ -26,8 +26,8 @@ class Person(models.Model):
 
 
 class PersonMovie(models.Model):
-    person_id = models.ForeignKey('Person', on_delete=models.PROTECT)
-    movie_id = models.ForeignKey('Movie', on_delete=models.PROTECT)
+    person = models.ForeignKey('Person', on_delete=models.PROTECT)
+    movie = models.ForeignKey('Movie', on_delete=models.PROTECT)
 
     order = models.IntegerField(_('Order'))
     category = models.CharField(_('Category'), max_length=80)

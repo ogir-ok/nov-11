@@ -1,0 +1,32 @@
+
+<group name="Python pro" startDate="jan-22-2023" teacher="Ihor">
+
+    <Student name="Perto">
+        </Student>
+    <Student name="Ican">
+            </Student>
+
+
+</group>
+
+
+
+
+{
+    "name": "Python Pro",
+    "startDate": "jan-22",
+    "students": [
+    {"name": "IAaa"}
+    {"name": "Vinnie the pooh"}
+]
+
+}
+
+
+
+group:
+    name: Pypro
+    students:
+        - Ivan
+        - Illa
+        - Kataryna

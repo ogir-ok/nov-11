@@ -18,9 +18,8 @@ class Command(BaseCommand):
             csv_data = csv.reader(f, delimiter=options.get('delimeter', '\t'))
             for row in csv_data:
                 row_data = {
-                    'movie_id': Movie.objects.get(imdb_id = row[1]),
-                    'person_id': Person.objects.get(imdb_id = row[2]),
-
+                    'movie': Movie.objects.get(imdb_id = row[1]),
+                    'person': Person.objects.get(imdb_id = row[2]),
                     'title_type': row[1],
                     'name': row[2],
                     'is_adult': row[4] == '1',
