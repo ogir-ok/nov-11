@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework_simplejwt',
     'social_django',
+    'django_filters',
 
     'apps.lms',
     'apps.authentication',
@@ -127,7 +128,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 LOCALE_PATH = os.path.join(BASE_DIR, 'locale')
-LANGUAGE_CODE = 'uk'
+LANGUAGE_CODE = 'en'
 LANGUAGES = (
     ('en', _('English')),
     ('uk', _('Ukrainian')),
@@ -169,7 +170,13 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
-    )
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 15,
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter'
+    ),
 }
 
 

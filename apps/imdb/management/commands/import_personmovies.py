@@ -2,7 +2,7 @@ import csv
 
 from django.core.management import BaseCommand
 
-from apps.imdb.models import Movie
+from apps.imdb.models import Movie, Person, PersonMovie
 
 
 class Command(BaseCommand):
@@ -17,21 +17,25 @@ class Command(BaseCommand):
         with open(file_name) as f:
             csv_data = csv.reader(f, delimiter=options.get('delimeter', '\t'))
             for row in csv_data:
-                row_data = {
-                    'movie': Movie.objects.get(imdb_id = row[1]),
-                    'person': Person.objects.get(imdb_id = row[2]),
-                    'title_type': row[1],
-                    'name': row[2],
-                    'is_adult': row[4] == '1',
-                    'year': f'{row[5]}-01-01' if row[5] != '\\N' else None,
-                    'genres': row[8].split(',') if row[8] != '\\N' else []
-                }
-
-                if row[1] not in ('short', 'movie'):
+                try:
+                    row_data = {
+                        'movie': Movie.objects.get(imdb_id=row[0]),
+                        'person': Person.objects.get(imdb_id=row[2]),
+                        'order': int(row[1]),
+                        'category': row[3],
+                        'job': row[4] if row[4] != '\\N' else None,
+                        'characters': row[5].split(',') if row[5] != '\\N' else []
+                    }
+                except Movie.DoesNotExist:
+                    print(f'error: no movie {row[0]}')
+                    continue
+                except Person.DoesNotExist:
+                    print(f'error: no person {row[2]}')
                     continue
 
-                movie, created = Movie.objects.get_or_create(imdb_id=row_data['imdb_id'], defaults=row_data)
+                personmovie, created = PersonMovie.objects.get_or_create(movie__imdb_id=row[0],
+                                                                         person__imdb_id=row[2],
                 if not created:
-                    Movie.objects.filter(id=movie.id).update(**row_data)
+                    PersonMovie.objects.filter(id=personmovie.id).update(**row_data)
 
                 print(row_data)

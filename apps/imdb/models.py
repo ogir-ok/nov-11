@@ -17,12 +17,18 @@ class Movie(models.Model):
     year = models.DateField(_('Year'), null=True)
     genres = ArrayField(models.CharField(_('Genres'), max_length=80))
 
+    def __str__(self):
+        return self.name
+
 
 class Person(models.Model):
     imdb_id = models.CharField(_('Id from IMDB'), max_length=80)
     name = models.CharField(_('Name'), max_length=255)
-    birth_year = models.DateField(_('Birth Year'))
-    death_year = models.DateField(_('Death Year'))
+    birth_year = models.DateField(_('Birth Year'), null=True)
+    death_year = models.DateField(_('Death Year'), null=True)
+
+    def __str__(self):
+        return self.name
 
 
 class PersonMovie(models.Model):
@@ -30,7 +36,7 @@ class PersonMovie(models.Model):
     movie = models.ForeignKey('Movie', on_delete=models.PROTECT)
 
     order = models.IntegerField(_('Order'))
-    category = models.CharField(_('Category'), max_length=80)
-    job = models.CharField(_('Job'), max_length=80)
+    category = models.CharField(_('Category'), max_length=120)
+    job = models.CharField(_('Job'), max_length=120, null=True)
     characters = ArrayField(models.CharField(_('Characters'), max_length=255))
 
