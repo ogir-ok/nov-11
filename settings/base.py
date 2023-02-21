@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+from datetime import timedelta
 
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
@@ -52,7 +53,8 @@ INSTALLED_APPS = [
 
     'apps.lms',
     'apps.authentication',
-    'apps.imdb'
+    'apps.imdb',
+    'apps.telegram_bot'
 ]
 
 
@@ -190,3 +192,10 @@ AUTHENTICATION_BACKENDS = (
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY', '')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET', '')
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
+}
+
+
+TELEGRAM_API_KEY = os.getenv('TELEGRAM_API_KEY', '')

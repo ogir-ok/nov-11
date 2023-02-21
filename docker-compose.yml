@@ -28,11 +28,27 @@ services:
 
     command: /bin/bash -c  "pip install -r requirements.txt &&  invoke runit"
 
+  bot:
+    build: .
+    image: nov-11-web
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/src
+      - static:/static
+    env_file:
+      - .env
+
+    command: /bin/bash -c  "pip install -r requirements.txt && ./manage.py run_bot"
+
   client:
     image: node:16.14.2
     volumes:
       - ./client:/src
     command: /bin/bash -c "cd /src/; npm i; npm run dev"
+    ports:
+      - 3000:3000
 
   celery-worker:
     build: .
